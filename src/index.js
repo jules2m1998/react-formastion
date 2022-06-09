@@ -54,7 +54,6 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentPlayer: "O",
       history: [Array(3).fill(null), Array(3).fill(null), Array(3).fill(null)],
       index: 1,
       logs: [[Array(3).fill(null), Array(3).fill(null), Array(3).fill(null)]],
@@ -123,11 +122,12 @@ class Game extends React.Component {
     );
     const verty = history.map((value, k) => value.filter((v, l) => l === j)[0]);
     const identity = history.map((v) =>
-      v.filter((h) => h === this.state.currentPlayer)
+      v.filter((h) => h === this.state.current.player)
     );
-    identity.push(diago_1.filter((h) => h === this.state.currentPlayer));
-    identity.push(diago_2.filter((h) => h === this.state.currentPlayer));
-    identity.push(verty.filter((h) => h === this.state.currentPlayer));
+    identity.push(diago_1.filter((h) => h === this.state.current.player));
+    identity.push(diago_2.filter((h) => h === this.state.current.player));
+    identity.push(verty.filter((h) => h === this.state.current.player));
+    console.log(identity);
 
     return !!identity.filter((v) => v.length === 3).length;
   }
